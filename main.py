@@ -18,14 +18,15 @@ async def helpCommand(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     
 async def handleMessage(update, context):
+    chat_id=update.effective_chat.id
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text= r.sampleResposnse(update.message.text)
+        text= r.sampleResposnse(chat_id, update.message.text)
     )
 
-async def error(update, context):
+def error(update, context):
     print(f"Update {update} cause error {context.error}")
-    await None
+    return None
 
 
 if __name__ == '__main__':
