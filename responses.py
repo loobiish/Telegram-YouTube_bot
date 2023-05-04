@@ -1,20 +1,13 @@
 from datetime import datetime
 from yt_dlp import YoutubeDL
+from telegram import Chat
+import asyncio
+import nest_asyncio
+nest_asyncio.apply()
+
+
 
 def sampleResposnse(chat_id, user_message):
-    if "https://youtu.be/" in user_message:
-        try:
-            user_message = "https://www.youtube.com/watch?v=" + user_message[-11:]
-            URLS = [user_message]
-            with YoutubeDL() as yld:
-                video_info = yld.extract_info(URLS[0], download=False)
-                video_name = video_info['title']
-                print("===============================")
-                print(video_name)
-                return yld.download(URLS)
-        except Exception as e:
-            return f"Sorry, it seems like the given link is broken :( \
-                Here's the error that occured: {e}"
 
     user_message = str(user_message).lower()
 
@@ -33,8 +26,8 @@ def sampleResposnse(chat_id, user_message):
         return "The time is now: " + str(time_now)
     
     
-
-    return "Sorry my usability is limited so I did not understand what you are trying to say. :("
+    else:
+        return "Sorry my usability is limited so I did not understand what you are trying to say. :("
 
 
     
